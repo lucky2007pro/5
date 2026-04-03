@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Edit Product{% else %}Add Product{% endif %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{% if object %}Edit Product{% else %}Add Product{% endif %}</h1>
+        <p class="muted">Fill in the form below.</p>
+    </div>
+    <a class="btn btn-outline" href="{% url 'product_list' %}">Back to list</a>
+</div>
+
+<div class="card">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-outline" href="{% url 'product_list' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

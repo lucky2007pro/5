@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{{ object.name }}</h1>
+        <p class="muted">Category details page.</p>
+    </div>
+    <div class="actions">
+        <a class="btn btn-outline" href="{% url 'product_list' %}">Back</a>
+        <a class="btn btn-primary" href="{% url 'category_update' object.pk %}">Edit</a>
+    </div>
+</div>
+
+<div class="card">
+    <ul class="field-list">
+        <li><strong>Name:</strong> {{ object.name }}</li>
+        <li><strong>Description:</strong> {{ object.desc }}</li>
+    </ul>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Categories</h1>
+        <p class="muted">Category list view.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'category_create' %}">+ Add Category</a>
+</div>
+
+<div class="grid">
+    {% for category in object_list %}
+        <div class="card">
+            <span class="badge">Category</span>
+            <h2>{{ category.name }}</h2>
+            <p class="muted">{{ category.desc|truncatewords:25 }}</p>
+            <div class="actions">
+                <a class="btn btn-outline" href="{% url 'category_detail' category.pk %}">View</a>
+                <a class="btn btn-primary" href="{% url 'category_update' category.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'category_delete' category.pk %}">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="card"><p class="muted">No categories yet.</p></div>
+    {% endfor %}
+</div>
+{% endblock %}

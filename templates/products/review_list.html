@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Reviews{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Reviews</h1>
+        <p class="muted">Review list view.</p>
+    </div>
+</div>
+
+<div class="grid">
+    {% for review in object_list %}
+        <div class="card">
+            <span class="badge">Rating: {{ review.rating }}</span>
+            <h2 style="margin-top: 12px;">{{ review.product.name }}</h2>
+            <p class="muted">By {{ review.user.full_name }} (@{{ review.user.username }})</p>
+            <p>{{ review.comment }}</p>
+        </div>
+    {% empty %}
+        <div class="card"><p class="muted">No reviews yet.</p></div>
+    {% endfor %}
+</div>
+{% endblock %}

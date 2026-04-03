@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>Users</h1>
+        <p class="muted">User list view.</p>
+    </div>
+    <a class="btn btn-primary" href="{% url 'user_create' %}">+ Add User</a>
+</div>
+
+<div class="grid">
+    {% for user in object_list %}
+        <div class="card">
+            <span class="badge">User</span>
+            <h2>{{ user.full_name }}</h2>
+            <p class="muted">@{{ user.username }}</p>
+            <p>Year of birth: {{ user.year_of_birth }}</p>
+            <div class="actions">
+                <a class="btn btn-outline" href="{% url 'user_detail' user.pk %}">View</a>
+                <a class="btn btn-primary" href="{% url 'user_update' user.pk %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'user_delete' user.pk %}">Delete</a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="card"><p class="muted">No users yet.</p></div>
+    {% endfor %}
+</div>
+{% endblock %}

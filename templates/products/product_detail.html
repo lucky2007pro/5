@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ object.name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{{ object.name }}</h1>
+        <p class="muted">Product details page.</p>
+    </div>
+    <div class="actions">
+        <a class="btn btn-outline" href="{% url 'product_list' %}">Back</a>
+        <a class="btn btn-primary" href="{% url 'product_update' object.pk %}">Edit</a>
+    </div>
+</div>
+
+<div class="card">
+    <div class="grid" style="align-items: start;">
+        <div>
+            {% if object.image %}
+                <div class="image-box">
+                    <img src="{{ object.image.url }}" alt="{{ object.name }}">
+                </div>
+            {% endif %}
+        </div>
+        <div>
+            <ul class="field-list">
+                <li><strong>Name:</strong> {{ object.name }}</li>
+                <li><strong>Category:</strong> {{ object.category.name }}</li>
+                <li><strong>Price:</strong> $ {{ object.price }}</li>
+                <li><strong>Description:</strong> {{ object.description }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

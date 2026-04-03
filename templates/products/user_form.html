@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Edit User{% else %}Add User{% endif %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{% if object %}Edit User{% else %}Add User{% endif %}</h1>
+        <p class="muted">User form.</p>
+    </div>
+    <a class="btn btn-outline" href="{% url 'product_list' %}">Back</a>
+</div>
+
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="btn btn-primary" type="submit">Save</button>
+            <a class="btn btn-outline" href="{% url 'product_list' %}">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

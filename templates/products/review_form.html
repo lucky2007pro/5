@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if object %}Edit Review{% else %}Add Review{% endif %}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <div>
+        <h1>{% if object %}Edit Review{% else %}Add Review{% endif %}</h1>
+        <p class="muted">Review form.</p>
+    </div>
+</div>
+
+<div class="card">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="actions">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
